@@ -1,0 +1,17 @@
+.jumbotron h1, .jumbotron h4, #jumbotron-button {
+	text-align: center;
+}
+
+.navbar {
+	/*padding: 0 10% 0 10%;*/
+	margin-bottom: 0px;
+}
+
+#jumbotron-button {
+	padding: 15px 0 15px 0;
+}
+
+.form-horizontal {
+	background-color: #f5f5f5;
+	padding: 10px 10px 10px 10px;
+}
