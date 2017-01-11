@@ -34,7 +34,7 @@ database.ref().on("child_added", function(childSnapshot) {
 	// save the keys for each value in the childSnapshot to var loadDataKeys
 	var loadDataKeys = Object.keys(loadData);
 	// get the count of how many keys there are, then subtract 1 to get the index of the last object pushed to the database.
-	var lastObjectIndex = loadDataKeys.length-1;
+	var rowNumber = loadDataKeys.length;
 	// get the key name/object for the 
 	// var lastObjectKey = loadDataKeys[lastObjectIndex];
 	// var lastObject = loadData[lastObjectKey];
@@ -43,23 +43,32 @@ database.ref().on("child_added", function(childSnapshot) {
 	console.log("loadData: "+loadData);
 	console.log("loadData value at 0: "+ loadData[0]);
 	console.log("loadDataKeys: "+loadDataKeys);
-	console.log("lastObjectIndex: "+lastObjectIndex);
+	// console.log("lastObjectIndex: "+lastObjectIndex);
 	console.log(loadData.name);
 	// console.log("lastObjectKey: "+lastObjectKey);
 	// console.log("lastObject: "+lastObject);
 	// console.log("name property of last object: "+lastObject.name);
 
 	var employeeTable = $("#employee-table");
+
+	var now = moment();
+	var dateStarted = moment(loadData.date);
+
+
+	var difference = moment(now).diff(moment(dateStarted), 'months')
+
+	console.log("DIFFERENCE is: " + difference);
+
 	
 	//for id column, will have to calc total existing employees
 	employeeTable.append("<tr>"+
-	      "<td>1</td>"+ 
+	      "<td>"+ rowNumber +"</td>"+ 
 	      "<td>"+ loadData.name +"</td>"+
 	      "<td>"+ loadData.role +"</td>"+
 	      "<td>"+ loadData.date +"</td>"+
-	      "<td>Months Worked</td>"+
+	      "<td>"+ difference + "</td>"+
 	      "<td>$ "+ loadData.rate +"</td>"+
-	      "<td>Total Billed</td>"+
+	      "<td>$" + difference*loadData.rate +"</td>"+
 	    "</tr>"
 	);
 
